@@ -1,0 +1,1 @@
+{"version":3,"file":"crmController.js","sourceRoot":"","sources":["../../lib/controllers/crmController.ts"],"names":[],"mappings":";;AAAA,qCAAqC;AACrC,iDAAmD;AAGnD,MAAM,OAAO,GAAG,QAAQ,CAAC,KAAK,CAAC,SAAS,EAAE,wBAAa,CAAC,CAAC;AAEzD,MAAa,iBAAiB;IAInB,WAAW,CAAE,GAAY,EAAE,GAAa;QAC3C,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC;IACrB,CAAC;CAIJ;AAVD,8CAUC"}
