@@ -14,7 +14,21 @@ export class Routes {
             })
         })
         
-        
+        app.route('/universities')
+        .get((req: Request, res: Response, next: NextFunction) => {
+            
+                next();
+                                    
+        }, this.contactController.getuniversities)     
+           
+        app.route('/cities')
+        .get( this.contactController.getcities)        
+
+        app.route('/schools')
+        .get( this.contactController.getschools)     
+
+        app.route('/departments')
+        .get( this.contactController.getdepartments)     
       
 }
 }

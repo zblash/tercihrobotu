@@ -1,5 +1,6 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
+import * as mongoose from "mongoose";
 import { Routes } from "./routes/crmRoutes";
 
 class App {
@@ -7,13 +8,13 @@ class App {
     public app: express.Application;
     public routePrv: Routes = new Routes();
     // public mongoUrl: string = 'mongodb://localhost/CRMdb';  
-    public mongoUrl: string = 'mongodb://dalenguyen:123123@localhost:27017/CRMdb';
+    public mongoUrl: string = 'mongodb://zblash:fb19077774@ds151533.mlab.com:51533/tercihrobotu';
 
     constructor() {
         this.app = express();
         this.config();        
         this.routePrv.routes(this.app);     
-        // this.mongoSetup();
+        this.mongoSetup();
     }
 
     private config(): void{
@@ -23,10 +24,10 @@ class App {
         this.app.use(express.static('public'));
     }
 
-    // private mongoSetup(): void{
-    //     mongoose.Promise = global.Promise;
-    //     mongoose.connect(this.mongoUrl);        
-    // }
+    private mongoSetup(): void{
+        mongoose.Promise = global.Promise;
+        mongoose.connect(this.mongoUrl);        
+    }
 
 }
 
