@@ -12,7 +12,7 @@ class Routes {
                 message: 'GET request successfulll!!!!'
             });
         });
-        app.route('/universities')
+        app.route('/universities/:page([0-9]+)')
             .get((req, res, next) => {
             next();
         }, this.contactController.getuniversities);

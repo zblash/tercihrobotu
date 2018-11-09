@@ -14,7 +14,7 @@ export class Routes {
             })
         })
         
-        app.route('/universities')
+        app.route('/universities/:page([0-9]+)')
         .get((req: Request, res: Response, next: NextFunction) => {
             
                 next();
@@ -22,8 +22,8 @@ export class Routes {
         }, this.contactController.getuniversities)     
            
         app.route('/cities')
-        .get( this.contactController.getcities)        
-
+        .get( this.contactController.getcities)    
+            
         app.route('/schools')
         .get( this.contactController.getschools)     
 

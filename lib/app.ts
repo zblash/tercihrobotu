@@ -1,13 +1,13 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
+import * as cors from "cors";
 import * as mongoose from "mongoose";
 import { Routes } from "./routes/crmRoutes";
 
 class App {
 
     public app: express.Application;
-    public routePrv: Routes = new Routes();
-    // public mongoUrl: string = 'mongodb://localhost/CRMdb';  
+    public routePrv: Routes = new Routes(); 
     public mongoUrl: string = 'mongodb://zblash:fb19077774@ds151533.mlab.com:51533/tercihrobotu';
 
     constructor() {
@@ -18,6 +18,7 @@ class App {
     }
 
     private config(): void{
+        this.app.use(cors());
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
         // serving static files 

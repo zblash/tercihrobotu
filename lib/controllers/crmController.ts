@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import * as url from 'url';
 import { UniversitiesSchema } from '../models/universities';
 import { SchoolsSchema } from '../models/schools';
 import { DepartmentsSchema } from '../models/departments';
@@ -13,76 +14,65 @@ export class ContactController{
 
     
     public getcities(req: Request, res: Response) {
-        City.find({}, (err,cities) => {
-            if(err){
-                res.send(err);
-            }
-            res.json(
-                {
-                    cities
-                }
-            );
-        })
+        City.find({})
+        .sort({name: 1})
+        .exec()
+        .then(cities => { res.json({cities}); })
+        .catch(err => { res.send(err); })
     }
 
     public getschools(req: Request, res: Response) {
-        School.find({}, (err,schools) => {
-            if(err){
-                res.send(err);
-            }
-            res.json(
-                {
-                    schools
-                }
-            );
-        })
+        School.find({})
+        .sort({name: 1})
+        .exec()
+        .then(schools => { res.json({schools}); })
+        .catch(err => { res.send(err); });
     }
 
     public getdepartments(req: Request, res: Response) {
-        Department.find({}, (err,departments) => {
-            if(err){
-                res.send(err);
-            }
-            res.json(
-                {
-                    departments
-                }
-            );
-        })
+        Department.find({})
+        .sort({name: 1})
+        .exec()
+        .then(departments => { res.json({departments}); })
+        .catch(err => { res.send(err); })
     }
 
     public getuniversities (req: Request, res: Response) {       
-        let cities = req.query.cities;
-        let page = parseInt(req.query.page) || 0;
-        let q = University.find({
-            $and: [
-                {'sehir': {$in: cities}},
-                {$and: [{id: {$gte: 1}},{id: {$lte: 1000}}]}
-        ]
-        }).skip(page * 30) 
-        .limit(5);
-       q.exec((err, posts) => {
-        if(err){
-            res.send(err);
-        }
+        let page = parseInt(req.params.page) || 0;
         
-        University.count({}).exec((counterr, count) => {
-            if (counterr) {
+        let query = {
+            $and: [
+                req.query.cities ? {'city': {$in: req.query.cities }} : {},
+                req.query.schools ? {'school': {$in: req.query.schools }} : {},
+                req.query.departments ? {'department': {$in: req.query.departments }} : {},
+                req.query.deptype ? {'type': {$in: req.query.deptype}} : {},
+                req.query.pointtop&&req.query.pointbot ? {$and: [{point: {$gte: req.query.pointbot}},{point: {$lte: req.query.pointtop}}]} : 
+                req.query.ranktop&&req.query.rankbot ? {$and: [{rank: {$gte: req.query.rankbot}},{rank: {$lte: req.query.ranktop}}]} : {},
+                
+            ]
+        }
+        let q = University.find(query).skip(page * 30) 
+        .limit(30)
+        .sort({point: -1})
+        .exec()
+        .then(posts => {
+            University.count(query)
+            .exec()
+            .then(count => {
+                return res.json({
+                    universities: posts,
+                    total: count,
+                    totalPages: Math.ceil(count/30),
+                    page: page,
+                    pageSize: posts.length
+                });
+            })
+            .catch(counterr => {
                 return res.json(counterr);
-              }
-              return res.json({
-                universities: posts,
-                total: count,
-                totalPage: Math.ceil(count/30),
-                page: page,
-                pageSize: posts.length,
-                nextPage: req.protocol + '://' + (req.get('host') + req.path).replace(/\/$/, "")+'?page='+(page+1)
-              });
+            })
         })
-
+        .catch(err => {
+            res.send(err);
         });
     }
- 
-    
-
 }
