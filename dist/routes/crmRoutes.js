@@ -12,10 +12,12 @@ class Routes {
                 message: 'GET request successfulll!!!!'
             });
         });
-        app.route('/universities/:page([0-9]+)')
+        app.route('/universities')
             .get((req, res, next) => {
             next();
         }, this.contactController.getuniversities);
+        app.route('/universities/:code([0-9]+)')
+            .get(this.contactController.getUniversityByCode);
         app.route('/cities')
             .get(this.contactController.getcities);
         app.route('/schools')

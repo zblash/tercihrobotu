@@ -14,19 +14,24 @@ export class Routes {
             })
         })
         
-        app.route('/universities/:page([0-9]+)')
+        app.route('/universities')
         .get((req: Request, res: Response, next: NextFunction) => {
             
                 next();
                                     
-        }, this.contactController.getuniversities)     
-           
+        }, this.contactController.getuniversities)  
+
+        app.route('/universities/:code([0-9]+)')
+        .get( this.contactController.getUniversityByCode)    
+
         app.route('/cities')
         .get( this.contactController.getcities)    
             
         app.route('/schools')
         .get( this.contactController.getschools)     
+
         app.route('/edit').get( this.contactController.editunis)  
+
         app.route('/departments')
         .get( this.contactController.getdepartments)     
       

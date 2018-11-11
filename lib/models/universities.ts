@@ -11,10 +11,13 @@ export const UniversitiesSchema = new Schema({
         type: String            
     },
     code: {
-        type: String            
+        type: Number            
     },
     school: {
         type: String            
+    },
+    schooltype: {
+        type: String
     },
     city: {
         type: String            
