@@ -1,1 +1,1 @@
-{"version":3,"file":"schools.js","sourceRoot":"","sources":["../../lib/models/schools.ts"],"names":[],"mappings":";;AAAA,qCAAqC;AAErC,MAAM,MAAM,GAAG,QAAQ,CAAC,MAAM,CAAC;AAElB,QAAA,aAAa,GAAG,IAAI,MAAM,CAAC;IAEpC,IAAI,EAAE;QACF,IAAI,EAAE,MAAM;KACf;CACJ,CAAC,CAAC"}
+{"version":3,"file":"schools.js","sourceRoot":"","sources":["../../lib/models/schools.ts"],"names":[],"mappings":";;AAAA,qCAAqC;AAErC,MAAM,MAAM,GAAG,QAAQ,CAAC,MAAM,CAAC;AAElB,QAAA,aAAa,GAAG,IAAI,MAAM,CAAC;IACpC,IAAI,EAAE;QACF,IAAI,EAAE,MAAM;KACf;IACD,IAAI,EAAE;QACF,IAAI,EAAE,MAAM;KACf;CACJ,CAAC,CAAC"}

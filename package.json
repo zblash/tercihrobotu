@@ -1,20 +1,19 @@
 {
-  "name": "crm",
+  "name": "tercihrobotu",
   "version": "1.0.0",
-  "description": "An API built with NodeJS, Express, MongoDB and TypeScript",
+  "description": "",
   "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "nodemon -L -e ts,json --exec \"npm run start\"",
-    "start": "tsc && node ./dist/server.js",
+    "dev": "nodemon -L -e ts,json --exec \"npm run build && npm run start\"",
+    "start": "node ./dist/server.js",
     "prod": "npm run build && npm run start"
   },
   "keywords": [
-    "Dale",
-    "Nguyen"
+    "tercihrobotu"
   ],
-  "author": "Dale Nguyen <dungnq@itbox4vn.com> (http://dalenguyen.me)",
+  "author": "Yusuf Can Celik",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.11.1",

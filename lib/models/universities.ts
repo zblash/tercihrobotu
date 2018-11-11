@@ -3,55 +3,53 @@ import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const UniversitiesSchema = new Schema({
-    id: {
-        type: Number
-    },
-    tur: {
+    
+    type: {
         type: String
     },
-    eskitur: {
+    oldtype: {
         type: String            
     },
-    kod: {
+    code: {
         type: String            
     },
-    okul: {
+    school: {
         type: String            
     },
-    sehir: {
+    city: {
         type: String            
     },
-    bolum: {
+    department: {
         type: String            
     },
-    fakulte: {
+    faculty: {
         type: String            
     },
-    ekbilgi: {
+    info: {
         type: String            
     },
-    puan: {
+    point: {
         type: Number            
     },
-    eskisira: {
+    rank: {
         type: Number            
     },
-    sure: {
+    years: {
         type: Number            
     },
-    eskikont: {
+    pastquota: {
         type: Number            
     },
-    ogrencisayisi: {
+    quota: {
         type: Number            
     },
-    okulbir: {
+    topstudentquota: {
         type: Number            
     },
-    yerlesen: {
+    student: {
         type: Number            
     },
-    ozelkosullar: {
+    conditions: {
         type: String            
     }
 });

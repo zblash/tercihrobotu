@@ -26,7 +26,7 @@ export class Routes {
             
         app.route('/schools')
         .get( this.contactController.getschools)     
-
+        app.route('/edit').get( this.contactController.editunis)  
         app.route('/departments')
         .get( this.contactController.getdepartments)     
       

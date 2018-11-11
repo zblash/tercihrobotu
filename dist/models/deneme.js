@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-exports.UniversitiesSchema = new Schema({
+exports.DenemeSchema = new Schema({
     type: {
         type: String
     },
@@ -52,4 +52,4 @@ exports.UniversitiesSchema = new Schema({
         type: String
     }
 });
-//# sourceMappingURL=universities.js.map
+//# sourceMappingURL=deneme.js.map
