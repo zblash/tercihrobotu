@@ -18,16 +18,16 @@ class App {
   }
 
   private config(): void {
-    var whitelist = ['https://www.faktoryel.com'];
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback('Yetkisiz İşlem')
-    }
-  }
-}
+    var whitelist = ["https://www.faktoryel.com"];
+    var corsOptions = {
+      origin: function(origin, callback) {
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+          callback(null, true);
+        } else {
+          callback("Yetkisiz İşlem");
+        }
+      }
+    };
     this.app.use(cors(corsOptions));
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
