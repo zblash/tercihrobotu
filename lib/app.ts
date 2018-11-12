@@ -18,7 +18,7 @@ class App {
   }
 
   private config(): void {
-    var whitelist = ['https://www.faktoryel.com/']
+    var whitelist = ['https://www.faktoryel.com']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
