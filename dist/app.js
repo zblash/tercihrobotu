@@ -8,18 +8,30 @@ const crmRoutes_1 = require("./routes/crmRoutes");
 class App {
     constructor() {
         this.routePrv = new crmRoutes_1.Routes();
-        this.mongoUrl = 'mongodb://zblash:fb19077774@ds151533.mlab.com:51533/tercihrobotu';
+        this.mongoUrl = "mongodb://zblash:fb19077774@ds151533.mlab.com:51533/tercihrobotu";
         this.app = express();
         this.config();
         this.routePrv.routes(this.app);
         this.mongoSetup();
     }
     config() {
-        this.app.use(cors());
+        var whitelist = ["http://deneme.com"];
+        var corsOptions = {
+            origin: function (origin, callback) {
+                if (whitelist.indexOf(origin) !== -1) {
+                    callback(null, true);
+                }
+                else {
+                    callback(new Error("Yetkisiz İşlem"));
+                }
+            },
+            "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+        };
+        this.app.use(cors(corsOptions));
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
-        // serving static files 
-        this.app.use(express.static('public'));
+        // serving static files
+        this.app.use(express.static("public"));
     }
     mongoSetup() {
         mongoose.Promise = global.Promise;
