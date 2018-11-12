@@ -51,7 +51,7 @@ class ContactController {
     }
     getuniversities(req, res) {
         let page = parseInt(req.query.page) || 0;
-        let query = req.query.code ? { 'code': { $in: parseInt(req.query.code) } } : {
+        let query = req.query.code ? { 'code': { $in: req.query.code } } : {
             $and: [
                 req.query.cities ? { 'city': { $in: req.query.cities } } : {},
                 req.query.schools ? { 'school': { $in: req.query.schools } } : {},

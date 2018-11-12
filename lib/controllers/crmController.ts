@@ -56,8 +56,7 @@ export class ContactController{
     }
     public getuniversities (req: Request, res: Response) {       
         let page = parseInt(req.query.page) || 0;
-        let query = req.query.code ? {'code': {$in:parseInt(req.query.code)}} : {
-            
+        let query = req.query.code ? {'code': {$in:req.query.code}} : {
             $and: [
                 req.query.cities ? {'city': {$in: req.query.cities }} : {},
                 req.query.schools ? {'school': {$in: req.query.schools }} : {},
@@ -67,7 +66,6 @@ export class ContactController{
                 req.query.years ? {'years': parseInt(req.query.years)} : {$or: [{'years':4},{'years':6}]},
                 req.query.pointtop&&req.query.pointbot ? {$and: [{'point': {$gte: parseInt(req.query.pointbot)}},{'point': {$lte: parseInt(req.query.pointtop)}}]} : 
                 req.query.ranktop&&req.query.rankbot ? {$and: [{'rank': {$gte: parseInt(req.query.rankbot)}},{'rank': {$lte: parseInt(req.query.ranktop)}}]} : {},
-                
             ]
         }
         let q = University.find(query)
