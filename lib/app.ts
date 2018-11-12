@@ -18,16 +18,16 @@ class App {
   }
 
   private config(): void {
-    var whitelist = ["http://deneme.com"];
-    var corsOptions = {
-      origin: function(origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
-          callback(null, true);
-        } else {
-          callback(new Error("Yetkisiz İşlem"));
-        }
-      }
-    };
+    var whitelist = ['http://example1.com']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
     this.app.use(cors(corsOptions));
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
