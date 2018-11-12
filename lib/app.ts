@@ -26,8 +26,7 @@ class App {
         } else {
           callback(new Error("Yetkisiz İşlem"));
         }
-      },
-      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+      }
     };
     this.app.use(cors(corsOptions));
     this.app.use(bodyParser.json());
