@@ -18,13 +18,13 @@ class App {
   }
 
   private config(): void {
-    var whitelist = ['https://www.faktoryel.com/tercih-robotu/']
+    var whitelist = ['https://www.faktoryel.com'];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
-      callback(new Error('Not allowed by CORS'))
+      callback('Yetkisiz İşlem')
     }
   }
 }
