@@ -15,7 +15,7 @@ class App {
         this.mongoSetup();
     }
     config() {
-        var whitelist = ["https://www.faktoryel.com", "http://tercihrobotu.online"];
+        var whitelist = ["https://www.faktoryel.com", "https://tercihrobotu.online"];
         var corsOptions = {
             origin: function (origin, callback) {
                 if (whitelist.indexOf(origin) !== -1) {
