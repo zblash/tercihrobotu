@@ -3,14 +3,17 @@ import * as bodyParser from "body-parser";
 import * as cors from "cors";
 import * as mongoose from "mongoose";
 import { Routes } from "./routes/crmRoutes";
-
+import * as dotenv from "dotenv";
+dotenv.config({path:__dirname+'/../.env'});
 class App {
+  
   public app: express.Application;
   public routePrv: Routes = new Routes();
-  public mongoUrl: string =
-    "mongodb://zblash:fb19077774@ds151533.mlab.com:51533/tercihrobotu";
+  public mongoUrl: string = process.env.Mongodb;
 
   constructor() {
+    
+    console.log(`${__dirname}../.env`)
     this.app = express();
     this.config();
     this.routePrv.routes(this.app);
@@ -18,7 +21,7 @@ class App {
   }
 
   private config(): void {
-    var whitelist = ["https://www.faktoryel.com","https://tercihrobotu.online"];
+    var whitelist = process.env.corsWhitelist.split(',');
     var corsOptions = {
       origin: function(origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
